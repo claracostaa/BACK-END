@@ -65,7 +65,6 @@ function sortear(array){
 //========================
 
 // ROTA 1 - Cachorro aleatório
-
 app.get("/api/cachorros/aleatorio", (req, res)=> {
 //req - request(requisição) = é o pedido que chega ao servidor, por exemplo, o navegadoir pede uma foto de cachorro
 // res - response(resposta) = é o que o servidor envia de volta, por exemplo, o endereço da foto do cachorro
@@ -74,7 +73,6 @@ app.get("/api/cachorros/aleatorio", (req, res)=> {
 // object.values pega os valores do objeto
 // flat transforma tudo em um único array
 const todasAsFotos = Object.values(cachorros).flat();
-})
 
 //sorteia uma foto aleatória
 const item = sortear(todasAsFotos)
@@ -85,6 +83,7 @@ res.json({
     status: "sucess", 
     //URL da imagem que foi sorteada
     message: `http://localhost:${PORT}/fotos/${item}`
+});
 });
 
 // ROTA 2 - Cachorro de raça
@@ -120,3 +119,14 @@ app.get("/api/cachorros/:raca", (req, res) => {
         message: `http://localhost:${PORT}/fotos/${item}`
     });
 });
+
+//========================
+// INICIA O SERVIDOR
+//========================
+
+// inicia o servidor express
+app.listen(PORT, () => {
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
+    console.log(`Coloque as fotos manualmente em: data/fotos/`);
+    
+})
