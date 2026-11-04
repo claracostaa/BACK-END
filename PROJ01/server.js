@@ -65,3 +65,24 @@ function formatar(total){
 //==============================
 // Bloco 05:  Ouvindo o teclado
 //==============================
+process.stdin.on('keypress', (letra, tecla) =>{
+    // foi a tecla P? (=== compara se os dois lados são iguais)
+    if (tecla.name === 'p') {
+        // o ! INVERTE o valor: true vira false, alse vira true
+        rodando = !rodando;
+        // Operador ternário: consição ? valor_se_verdadeiro : valor_se_falso
+        // é um if de uma linha só
+        console.log(rodando ? '▶️Continuando': '⏸️ Pausado');
+    
+    // Senão, foi a tecla R?
+    } else if (tecla.name === 'r') {
+        tempo = 0 ;
+        console.clear();
+        console.log('⏱️' + formatar(tempo));
+        console.log('🔄️ Resetado')
+        // Senão, foi  Crtl + C
+    } else if (tecla.ctrl && tecla.name === 'C'){
+        console.log('\n👏👏🏻 Até mais!');
+        process.exit();
+    }
+})
